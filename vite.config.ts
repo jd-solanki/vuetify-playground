@@ -3,8 +3,8 @@ import vue from '@vitejs/plugin-vue'
 import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
 
 // Utilities
-import { defineConfig } from 'vite'
 import { fileURLToPath, URL } from 'node:url'
+import { defineConfig } from 'vite'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -14,7 +14,9 @@ export default defineConfig({
     }),
     // https://github.com/vuetifyjs/vuetify-loader/tree/next/packages/vite-plugin
     vuetify({
-      autoImport: true,
+      styles: {
+        configFile: 'src/styles/variables/_vuetify.scss',
+      },
     }),
   ],
   define: { 'process.env': {} },
@@ -32,7 +34,13 @@ export default defineConfig({
       '.vue',
     ],
   },
-  server: {
-    port: 3000,
+  build: {
+    chunkSizeWarningLimit: 5000,
+  },
+  optimizeDeps: {
+    exclude: ['vuetify'],
+    entries: [
+      './src/**/*.vue',
+    ],
   },
 })

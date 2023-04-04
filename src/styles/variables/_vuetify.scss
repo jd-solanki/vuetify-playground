@@ -1,0 +1,10 @@
+// ❗ Path must be relative
+@use 'vuetify/settings' with (
+    $utilities: false,
+    $button-height: 40px,
+  );
+
+// ℹ️ Remove above import and uncomment below to override core variables.
+// @forward "../../@core/scss/template/libs/vuetify/variables" with (
+//   $<variable-name>: <variable-value>
+// )
